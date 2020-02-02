@@ -41,8 +41,15 @@ namespace PageDataRepositories.Repositories.DataSources
 
         public async Task Save(PageBehaviour item)
         {
-            await _dbContext.PageBehaviours.AddAsync(item);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.PageBehaviours.AddAsync(item);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
